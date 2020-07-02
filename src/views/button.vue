@@ -32,6 +32,30 @@
     <j-button type="warning" disabled>点击</j-button>
     <j-button type="danger" disabled>点击</j-button>
     <j-button type="info" disabled>点击</j-button>
+    <br>
+    <br>
+    <j-button><J-icon icon="iconbangzhu" color="#000" pos="left"></J-icon>点击</j-button>
+    <j-button type="primary"><J-icon icon="iconbangzhu" pos="left"></J-icon>点击</j-button>
+    <j-button type="success"><J-icon icon="iconbangzhu" pos="left"></J-icon>点击</j-button>
+    <j-button type="warning"><J-icon icon="iconbangzhu" pos="left"></J-icon>点击</j-button>
+    <j-button type="danger"><J-icon icon="iconbangzhu" pos="left"></J-icon>点击</j-button>
+    <j-button type="info"><J-icon icon="iconbangzhu" pos="left"></J-icon>点击</j-button>
+    <br>
+    <br>
+    <j-button>点击<J-icon icon="iconbangzhu" color="#000" pos="right"></J-icon></j-button>
+    <j-button type="primary">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    <j-button type="success">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    <j-button type="warning">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    <j-button type="danger">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    <j-button type="info">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    <br>
+    <br>
+    <j-button><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+    <j-button type="primary"><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="success"><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="warning"><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="danger"><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="info"><J-icon icon="iconbangzhu"></J-icon></j-button>
   </div>
 </template>
 

@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../../style/var.scss";
+  @import "../../style/common.scss";
   @mixin button-color ($color, $bg-color, $bd-color){
     color: $color;
     background-color: $bg-color;
@@ -85,6 +85,11 @@ export default {
     outline: none;
     transition: all 0.1s;
     cursor: pointer;
+    .content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .j-button-small{
     // @include button-padding-cal(small);

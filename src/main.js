@@ -5,7 +5,9 @@ import App from './App'
 import router from './router'
 
 import JButton from 'package/button'
+import JIcon from 'package/icon'
 Vue.use(JButton)
+Vue.use(JIcon)
 
 Vue.config.productionTip = false
 
