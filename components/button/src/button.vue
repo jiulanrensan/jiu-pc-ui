@@ -1,5 +1,6 @@
 <template>
   <button
+    @click="handleClick"
     class="j-button"
     :disabled="disabled"
     :class="[
@@ -45,6 +46,12 @@ export default {
       return this.$parent.$options.name !== 'JButtonGroup' ? this.size : this.$parent.size
     }
   },
+  methods: {
+    // 自定义组件上注册的事件触发的是组件自定义的事件
+    handleClick (ev) {
+      this.$emit('click', ev)
+    }
+  }
 }
 </script>
 
