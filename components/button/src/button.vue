@@ -4,9 +4,9 @@
     :disabled="disabled"
     :class="[
       type ? 'j-button-' + type : '',
-      size ? 'j-button-' + size : '',
-      round ? 'j-button-round-' + size : '',
-      circle ? 'j-button-circle-' + size : '',
+      btnSize ? 'j-button-' + btnSize : '',
+      round ? 'j-button-round-' + btnSize : '',
+      circle ? 'j-button-circle-' + btnSize : '',
       disabled ? 'j-button-disabled' : ''
     ]">
     <div class="content">
@@ -40,7 +40,11 @@ export default {
     }
   },
   computed: {
-  }
+    // 如果是按钮组，size以button-group的值为准
+    btnSize () {
+      return this.$parent.$options.name !== 'JButtonGroup' ? this.size : this.$parent.size
+    }
+  },
 }
 </script>
 

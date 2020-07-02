@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 
 import JButton from 'package/button'
+import JButtonGroup from 'package/button-group'
 import JIcon from 'package/icon'
 Vue.use(JButton)
+Vue.use(JButtonGroup)
 Vue.use(JIcon)
 
 Vue.config.productionTip = false

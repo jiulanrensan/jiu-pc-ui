@@ -64,6 +64,44 @@
     <j-button type="warning" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
     <j-button type="danger" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
     <j-button type="info" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
+
+    <p>use JButtonGroup</p>
+    <j-button-group>
+      <j-button><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+      <j-button><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+      <j-button><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+      <j-button><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+    </j-button-group>
+    <br>
+    <br>
+    <j-button-group>
+      <j-button>点击<J-icon icon="iconbangzhu" color="#000" pos="right"></J-icon></j-button>
+      <j-button type="primary">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="success">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="warning">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="danger">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="info">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    </j-button-group>
+    <br>
+    <br>
+    <j-button-group round>
+      <j-button>点击<J-icon icon="iconbangzhu" color="#000" pos="right"></J-icon></j-button>
+      <j-button type="primary">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="success">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="warning">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="danger">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+      <j-button type="info">点击<J-icon icon="iconbangzhu" pos="right"></J-icon></j-button>
+    </j-button-group>
+    <br>
+    <br>
+    <j-button-group dir="column">
+      <j-button>点击</j-button>
+      <j-button type="primary">点击</j-button>
+      <j-button type="success">点击</j-button>
+      <j-button type="warning">点击</j-button>
+      <j-button type="danger">点击</j-button>
+      <j-button type="info">点击</j-button>
+    </j-button-group>
   </div>
 </template>
 
