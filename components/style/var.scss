@@ -1,0 +1,49 @@
+// 一些scss关键字解释
+// !default : 如果对变量赋值过了，就不再赋值，若没有赋值，则给此变量赋值
+
+// basic color
+// 基本类型颜色定义
+$--color-black: #000 !default;
+$--color-default: #fff !default;
+$--color-primary: #2d8cf0 !default;
+$--color-success: #19be6b !default;
+$--color-warning: #E6A23C !default;
+$--color-danger: #F56C6C !default;
+$--color-info: #909399 !default;
+
+
+// scss mix函数
+$--color-primary-light: mix($--color-default, $--color-primary, 80%) !default;
+$--color-success-light: mix($--color-default, $--color-success, 80%) !default;
+$--color-warning-light: mix($--color-default, $--color-warning, 80%) !default;
+$--color-danger-light: mix($--color-default, $--color-danger, 80%) !default;
+$--color-info-light: mix($--color-default, $--color-info, 80%) !default;
+
+// text color
+$--color-text-default: $--color-black !default;
+$--color-text-white: $--color-default !default;
+
+
+// font
+$--font-size-large: 18px !default;
+$--font-size-medium: 16px !default;
+$--font-size-small: 13px !default;
+$--font-line-height-default: 16px !default;
+
+
+// border-width
+$--border-width-default: 1px !default;
+// border-radius
+$--border-radius-default: 5px !default;
+// bordr-style
+$--border-style-default: solid !default;
+
+// border-color
+$--border-color-default: #DCDFE6 !default;
+
+
+// button
+$--button-padding-default: 8px !default;
+$--button-padding-small: 5px !default;
+$--button-padding-medium: 8px !default;
+$--button-padding-large: 10px !default;
