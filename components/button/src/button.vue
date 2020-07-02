@@ -6,6 +6,7 @@
       type ? 'j-button-' + type : '',
       size ? 'j-button-' + size : '',
       round ? 'j-button-round-' + size : '',
+      circle ? 'j-button-circle-' + size : '',
       disabled ? 'j-button-disabled' : ''
     ]">
     <div class="content">
@@ -30,6 +31,9 @@ export default {
     },
     // 是否圆角
     round: Boolean,
+    // 圆形按钮
+    // 单个icon时使用
+    circle: Boolean,
     disabled: {
       type: Boolean,
       default: false
@@ -70,6 +74,10 @@ export default {
   }
   @mixin button-round-cal ($type) {
     border-radius: $--border-width-default + $--font-line-height-default/2 + $type;
+  }
+  @mixin button-circle-cal ($type) {
+    padding: $type;
+    border-radius: 50%;
   }
   @mixin button-padding-cal ($type) {
     padding: $type $type*2;
@@ -165,5 +173,15 @@ export default {
   }
   .j-button-round-large{
     @include button-round-cal($--button-padding-large);
+  }
+
+  .j-button-circle-small{
+    @include button-circle-cal($--button-padding-small)
+  }
+  .j-button-circle-medium{
+    @include button-circle-cal($--button-padding-medium)
+  }
+  .j-button-circle-large{
+    @include button-circle-cal($--button-padding-large)
   }
 </style>

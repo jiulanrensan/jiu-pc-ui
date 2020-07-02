@@ -56,6 +56,14 @@
     <j-button type="warning"><J-icon icon="iconbangzhu"></J-icon></j-button>
     <j-button type="danger"><J-icon icon="iconbangzhu"></J-icon></j-button>
     <j-button type="info"><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <br>
+    <br>
+    <j-button circle><J-icon icon="iconbangzhu" color="#000"></J-icon></j-button>
+    <j-button type="primary" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="success" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="warning" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="danger" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
+    <j-button type="info" circle><J-icon icon="iconbangzhu"></J-icon></j-button>
   </div>
 </template>
 
