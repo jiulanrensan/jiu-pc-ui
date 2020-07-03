@@ -7,9 +7,11 @@ import router from './router'
 import JButton from 'package/button'
 import JButtonGroup from 'package/button-group'
 import JIcon from 'package/icon'
+import JBackTop from 'package/back-to-top'
 Vue.use(JButton)
 Vue.use(JButtonGroup)
 Vue.use(JIcon)
+Vue.use(JBackTop)
 
 Vue.config.productionTip = false
 

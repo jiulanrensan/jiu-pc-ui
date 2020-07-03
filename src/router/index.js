@@ -15,6 +15,11 @@ export default new Router({
           path: 'button',
           name: 'Button',
           component: () => import('@/views/button.vue')
+        },
+        {
+          path: 'backtop',
+          name: 'BackTop',
+          component: () => import('@/views/back-to-top.vue')
         }
       ]
     }

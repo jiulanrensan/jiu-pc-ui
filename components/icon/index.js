@@ -1,4 +1,4 @@
-import JIcon from './src/icon'
+import JIcon from './src'
 
 // 引入iconfont
 // https://www.iconfont.cn/help/detail?spm=a313x.7781069.1998910419.d8cf4382a&helptype=code
