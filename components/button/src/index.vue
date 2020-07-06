@@ -10,7 +10,7 @@
       circle ? 'j-button-circle-' + btnSize : '',
       disabled ? 'j-button-disabled' : ''
     ]">
-    <div class="content">
+    <div class="j-button_content">
       <slot></slot>
     </div>
   </button>
@@ -104,7 +104,7 @@ export default {
     outline: none;
     transition: all 0.1s;
     cursor: pointer;
-    .content{
+    .j-button_content{
       display: flex;
       justify-content: center;
       align-items: center;
