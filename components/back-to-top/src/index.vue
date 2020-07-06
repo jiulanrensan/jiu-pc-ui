@@ -9,7 +9,9 @@
   >
     <!-- 用插槽插入自定义内容，不插入时显示默认内容 -->
     <slot>
-      <J-icon icon="iconarrow-up" color="#000"></J-icon>
+      <div style="border-radius: 50%">
+        <J-icon icon="iconarrow-up" color="#000"></J-icon>
+      </div>
     </slot>
   </div>
 </template>
@@ -21,24 +23,24 @@ export default {
   name: 'JBackTop',
   props: {
     width: {
-      type: Number,
+      type: Number | String,
       default: 50
     },
     height: {
-      type: Number,
+      type: Number | String,
       default: 50
     },
     bottom: {
-      type: Number,
+      type: Number | String,
       default: 50
     },
     right: {
-      type: Number,
+      type: Number | String,
       default: 50
     },
     // 向下滚动多少距离才显示
     showHeight: {
-      type: Number,
+      type: Number | String,
       default: 400
     }
   },
@@ -53,7 +55,7 @@ export default {
   },
   mounted () {
     this.scrollElement = document.documentElement
-    this.handleVisible = throttle(this.handleVisible, 300)
+    this.handleVisible = throttle(this.handleVisible, 100)
     this.handleListenScroll()
   },
   methods: {
@@ -69,7 +71,7 @@ export default {
     },
     handleScroll (beginTime) {
       if (+new Date() - beginTime > 500) {
-        this.scrollElement.scrollTop = 0
+        this.showBackTop = false
       } else {
         setTimeout(() => {
           this.scrollElement.scrollTop = this.scrollElement.scrollTop - 100
