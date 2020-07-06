@@ -1,6 +1,7 @@
 <template>
   <div 
     v-if="showBackTop"
+    @click="handleTop"
     :class="[
       'j-back-to-top'
     ]"
@@ -8,13 +9,14 @@
   >
     <!-- 用插槽插入自定义内容，不插入时显示默认内容 -->
     <slot>
-      <J-icon icon="iconbangzhu" color="#000"></J-icon>
+      <J-icon icon="iconarrow-up" color="#000"></J-icon>
     </slot>
   </div>
 </template>
 
 <script>
 import JIcon from '../../back-to-top/src';
+import {throttle} from 'package/utils/common'
 export default {
   name: 'JBackTop',
   props: {
@@ -51,14 +53,50 @@ export default {
   },
   mounted () {
     this.scrollElement = document.documentElement
-    this.handleScroll()
+    this.handleVisible = throttle(this.handleVisible, 300)
+    this.handleListenScroll()
   },
   methods: {
-    handleScroll () {
+    handleListenScroll () {
       document.addEventListener('scroll', this.handleVisible)
     },
     handleVisible () {
       this.showBackTop = this.showHeight < this.scrollElement.scrollTop
+    },
+    handleTop () {
+      let beginTime = +new Date()
+      this.handleScroll(beginTime)
+    },
+    handleScroll (beginTime) {
+      if (+new Date() - beginTime > 500) {
+        this.scrollElement.scrollTop = 0
+      } else {
+        setTimeout(() => {
+          this.scrollElement.scrollTop = this.scrollElement.scrollTop - 100
+          this.handleScroll(beginTime)
+        }, 16);
+      }
+      /**
+       * element-ui此处用了window.requestAnimationFrame
+       * scrollToTop() {
+          const el = this.el;
+          const beginTime = Date.now();
+          const beginValue = el.scrollTop;
+          // 浏览器1s内重绘60次，即16.6ms重绘一次
+          const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16));
+          const frameFunc = () => {
+            // 超过500ms直接赋值scrollTop为0
+            const progress = (Date.now() - beginTime) / 500;
+            if (progress < 1) {
+              el.scrollTop = beginValue * (1 - easeInOutCubic(progress));
+              rAF(frameFunc);
+            } else {
+              el.scrollTop = 0;
+            }
+          };
+          rAF(frameFunc);
+        }
+       */
     }
   }
 }
@@ -72,5 +110,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 </style>
