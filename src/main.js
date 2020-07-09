@@ -8,10 +8,12 @@ import JButton from 'package/button'
 import JButtonGroup from 'package/button-group'
 import JIcon from 'package/icon'
 import JBackTop from 'package/back-to-top'
+import JCarousel from 'package/carousel'
 Vue.use(JButton)
 Vue.use(JButtonGroup)
 Vue.use(JIcon)
 Vue.use(JBackTop)
+Vue.use(JCarousel)
 
 Vue.config.productionTip = false
 

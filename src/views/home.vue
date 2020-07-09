@@ -16,7 +16,8 @@ export default {
     return {
       routeList: [
         {name: 'Button', path: '/button'},
-        {name: 'BackTop', path: '/backtop'}
+        {name: 'BackTop', path: '/backtop'},
+        {name: 'Carousel', path: '/carousel'}
       ]
     }
   }

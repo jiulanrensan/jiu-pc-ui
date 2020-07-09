@@ -94,14 +94,9 @@ export default {
     padding: $type $type*2;
   }
   .j-button{
-    box-sizing: border-box;
     padding: $--button-padding-medium $--button-padding-medium*2;
-    background: $--color-default;
-    color: $--color-text-default;
-    border: $--border-width-default $--border-style-default $--border-color-default;
     border-radius: $--border-radius-default;
-    line-height: $--font-line-height-default;
-    outline: none;
+    background: $--color-default;
     transition: all 0.1s;
     cursor: pointer;
     .j-button_content{

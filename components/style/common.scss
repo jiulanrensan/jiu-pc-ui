@@ -1,5 +1,10 @@
 @import './var.scss';
 
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 .j-icon {
   width: 20px;
   height: 20px;
@@ -7,4 +12,17 @@
   font-style: normal;
   font-weight: normal;
   overflow: hidden;
+}
+button{
+  outline: none;
+  cursor: pointer;
+  border: $--border-width-default $--border-style-default $--border-color-default;
+  line-height: $--font-line-height-default;
+  color: $--color-text-default;
+  box-sizing: border-box;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }

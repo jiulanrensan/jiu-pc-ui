@@ -20,6 +20,11 @@ export default new Router({
           path: 'backtop',
           name: 'BackTop',
           component: () => import('@/views/back-to-top.vue')
+        },
+        {
+          path: 'carousel',
+          name: 'Carousel',
+          component: () => import('@/views/carousel.vue')
         }
       ]
     }
