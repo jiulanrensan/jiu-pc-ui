@@ -11,7 +11,8 @@ export default {
     return {
       left: 0,
       itemStyle: '',
-      boxWidth: 0
+      boxWidth: 0,
+      animationDuration: 0.3
     }
   },
   created () {
@@ -26,8 +27,10 @@ export default {
   },
   watch: {
     left (value) {
+      // if ([-1, 0].includes(value)) this.itemStyle = `transition: transform .3s;`
       // 宽度width需要响应式，所以应该取父元素的盒子宽度
-      this.itemStyle = `transform:translateX(${value*this.boxWidth}px)`
+      this.itemStyle = `transform:translateX(${value*this.boxWidth}px);}`
+      
     }
   },
   methods: {
@@ -40,6 +43,6 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: all .2s;
+    transition: transform .3s;
   }
 </style>

@@ -23,10 +23,10 @@ export default {
   }
   .j-carousel-item {
     &:nth-of-type(2n){
-      background-color: #2d8cf0;
+      background-color: #99a9bf;
     }
     &:nth-of-type(2n+1){
-      background-color: #19be6b;
+      background-color: #d3dce6;
     }
   }
 </style>

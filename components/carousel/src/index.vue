@@ -132,7 +132,7 @@ export default {
     position: relative;
     .j-c-btngroup{
       position: absolute;
-      z-index: 10;
+      z-index: $--zIndex-10;
       width: 100%;
       top: 0;
       transition: all .5s;
