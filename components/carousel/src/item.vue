@@ -1,5 +1,5 @@
 <template>
-  <div class="j-carousel-item">
+  <div class="j-carousel-item" :style="itemStyle">
     <slot></slot>
   </div>
 </template>
@@ -8,9 +8,30 @@
 export default {
   name: 'JCarouselItem',
   data () {
-    return {}
+    return {
+      left: 0,
+      itemStyle: '',
+      boxWidth: 0
+    }
   },
-  
+  created () {
+    // console.log(this.$parent);
+    
+  },
+  mounted () {
+  },
+  computed: {
+    
+    
+  },
+  watch: {
+    left (value) {
+      // 宽度width需要响应式，所以应该取父元素的盒子宽度
+      this.itemStyle = `transform:translateX(${value*this.boxWidth}px)`
+    }
+  },
+  methods: {
+  }
 }
 </script>
 
@@ -19,5 +40,6 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
+    transition: all .2s;
   }
 </style>
