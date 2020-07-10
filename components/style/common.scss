@@ -1,6 +1,6 @@
 @import './var.scss';
 
-html, body{
+html, body, ul, li, h1, h2, h3, h4, h5{
   margin: 0;
   padding: 0;
 }
@@ -21,8 +21,6 @@ button{
   color: $--color-text-default;
   box-sizing: border-box;
 }
-ul, li {
-  margin: 0;
-  padding: 0;
+ li{
   list-style-type: none;
 }
