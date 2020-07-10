@@ -88,7 +88,13 @@ export default {
     startCarousel () {},
     stopCarousel () {},
     handleArrow (step) {
+      const final = this.carouselArr.length - 1
       this.currentIdx += step
+      if (this.currentIdx > final) {
+        this.currentIdx = 0
+      } else if (this.currentIdx < 0){
+        this.currentIdx = final
+      }
       this._setItemPos(this.currentIdx)
     },
     _getCarouselItem(){
