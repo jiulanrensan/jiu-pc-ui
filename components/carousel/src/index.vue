@@ -1,6 +1,9 @@
 <template>
   <!-- 分两个部分，父元素包含指示器，左右箭头，子元素为每个carousel元素 -->
   <div 
+    @mouseover="handleMouseOver"
+    @mouseleave="handleMouseLeave"
+    @click="handleClick"
     class="j-carousel-container"
     :style="{'height': height}">
     <!-- 左右按钮 -->
@@ -52,6 +55,10 @@ export default {
       type: Number,
       default: 3000
     },
+    autoPlay: {
+      type: Boolean,
+      default: true
+    }
   },
   components: {
     'j-button': JButton
@@ -60,7 +67,8 @@ export default {
     return {
       // 当前展示索引
       currentIdx: 0,
-      carouselItems: []
+      carouselItems: [],
+      carouselTimers: null
     }
   },
   /**
@@ -75,7 +83,7 @@ export default {
     // 初始化子元素位置
     this.initPos(this.initIdx)
     // 父组件最后mounted，此处开启定时轮播
-    this.startCarousel()
+    if (this.autoPlay) this.startCarousel(this.interval)
     
   },
   computed:{
@@ -89,8 +97,20 @@ export default {
       this._setItemWidth()
       this._setItemPos(initIdx)
     },
-    startCarousel () {},
+    startCarousel (interval) {
+      this.carouselTimers = setInterval(() => {
+        this._setItemIdx(1)
+        this._setItemPos(this.currentIdx)
+      }, interval);
+    },
     stopCarousel () {},
+    handleMouseOver () {
+      clearInterval(this.carouselTimers)
+    },
+    handleMouseLeave () {
+      if (this.autoPlay) this.startCarousel(this.interval)
+    },
+    handleClick () {},
     handleArrow (step) {
       this._setItemIdx(step)
       this._setItemPos(this.currentIdx)

@@ -1,9 +1,18 @@
 <template>
-  <j-carousel :initIdx="initIdx">
-    <j-carousel-item v-for="item in items" :key="item">
-      <h2>{{item}}</h2>
-    </j-carousel-item>
-  </j-carousel>
+  <div>
+    <j-carousel :initIdx="initIdx">
+      <j-carousel-item v-for="item in items" :key="item">
+        <h2>{{item}}</h2>
+      </j-carousel-item>
+    </j-carousel>
+    <br>
+    <br>
+    <j-carousel :initIdx="initIdx" :autoPlay="false">
+      <j-carousel-item v-for="item in items" :key="item">
+        <h2>{{item}}</h2>
+      </j-carousel-item>
+    </j-carousel>
+  </div>
 </template>
 
 <script>
