@@ -7,7 +7,13 @@
     class="j-carousel-container"
     :style="{'height': height}">
     <!-- 左右按钮 -->
-    <div class="j-c-btngroup" v-if="arrow" :style="{'top': height && height.slice(0,-2)/2 + 'px'}">
+    <div 
+      :class="[
+        'j-c-btngroup',
+        isHover ? 'is-hover' : ''
+      ]" 
+      v-if="arrow" 
+      :style="{'top': height && height.slice(0,-2)/2 + 'px'}">
       <j-button
         circle
         @click="handleArrow(-1)">
@@ -24,9 +30,16 @@
       <slot></slot>
     </div>
     <!-- 底部指示器(缩略图/小点/横杠) -->
-    <ul class="j-c-indicator" v-if="indicator">
-      <li v-for="(item,index) in carouselArr" :key="index">
-        <div></div>
+    <ul 
+      :class="[
+        'j-c-indicator',
+        `indicator-${indicatorPos}`
+      ]" 
+      v-if="indicator"
+      @click="handleClickIndic"
+      @mouseover="handleMouseOverIndic">
+      <li v-for="(item,index) in carouselArr" :key="index" :data-set="index">
+        <div :class="[index === currentIdx ? 'curIndicator' : '']"></div>
       </li>
     </ul>
   </div>
@@ -37,7 +50,16 @@ import JButton from 'package/button'
 export default {
   name: 'JCarousel',
   props: {
+    trigger: {
+      type: String,
+      default: 'click',
+      validator: (value) => {
+        return ['click', 'hover'].includes(value)
+      }
+    },
     arrow: {
+      // always/hover/never
+      // type: String,
       type: Boolean,
       default: true
     },
@@ -45,7 +67,11 @@ export default {
       type: Boolean,
       default: true
     },
-    indicatorPos: String,
+    indicatorPos: {
+      type: String,
+      // outside/indside/none
+      default: 'outside'
+    },
     height: String,
     initIdx: {
       type: Number,
@@ -68,7 +94,8 @@ export default {
       // 当前展示索引
       currentIdx: 0,
       carouselItems: [],
-      carouselTimers: null
+      carouselTimers: null,
+      isHover: false,
     }
   },
   /**
@@ -105,12 +132,27 @@ export default {
     },
     stopCarousel () {},
     handleMouseOver () {
+      this.isHover = true
       clearInterval(this.carouselTimers)
     },
     handleMouseLeave () {
+      this.isHover = false
       if (this.autoPlay) this.startCarousel(this.interval)
     },
     handleClick () {},
+    handleClickIndic (ev) {
+      if (this.trigger.includes('click')) this.handleIndicator(ev)
+    },
+    handleMouseOverIndic (ev) {
+      if (this.trigger.includes('hover')) this.handleIndicator(ev)
+    },
+    handleIndicator (ev) {
+      const target = ev.target
+      let idx
+      idx = target.tagName === 'LI' ? target.dataset.set : target.parentNode.dataset.set
+      if (isNaN(idx)) return
+      this._setItemPos(this.currentIdx = Number(idx))
+    },
     handleArrow (step) {
       this._setItemIdx(step)
       this._setItemPos(this.currentIdx)
@@ -194,6 +236,11 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      &.indicator-inside{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
       li{
         box-sizing: border-box;
         width: 30px;
@@ -206,8 +253,11 @@ export default {
         div{
           width: 100%;
           height: 3px;
-          background-color: $--color-default;
+          background-color: mix($--color-default, $--color-info, 50%);
           transition: all .2s;
+          &.curIndicator{
+            background-color: $--color-info;
+          }
         }
         &:hover{
           div{

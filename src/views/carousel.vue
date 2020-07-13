@@ -7,7 +7,7 @@
     </j-carousel>
     <br>
     <br>
-    <j-carousel :initIdx="initIdx" :autoPlay="false">
+    <j-carousel :initIdx="initIdx" :autoPlay="false" :arrow="false" indicatorPos="inside">
       <j-carousel-item v-for="item in items" :key="item">
         <h2>{{item}}</h2>
       </j-carousel-item>
