@@ -47,7 +47,11 @@ export default {
     initIdx: {
       type: Number,
       default: 0
-    }
+    },
+    interval: {
+      type: Number,
+      default: 3000
+    },
   },
   components: {
     'j-button': JButton
@@ -88,6 +92,13 @@ export default {
     startCarousel () {},
     stopCarousel () {},
     handleArrow (step) {
+      this._setItemIdx(step)
+      this._setItemPos(this.currentIdx)
+    },
+    _getCarouselItem(){
+      return this.$children.filter(el => el.$options.name === 'JCarouselItem')
+    },
+    _setItemIdx (step) {
       const final = this.carouselArr.length - 1
       this.currentIdx += step
       if (this.currentIdx > final) {
@@ -95,10 +106,6 @@ export default {
       } else if (this.currentIdx < 0){
         this.currentIdx = final
       }
-      this._setItemPos(this.currentIdx)
-    },
-    _getCarouselItem(){
-      return this.$children.filter(el => el.$options.name === 'JCarouselItem')
     },
     /**
      * 给每个item加上translate
