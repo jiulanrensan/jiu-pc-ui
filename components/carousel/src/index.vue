@@ -120,6 +120,13 @@ export default {
       return this.$slots.default
     }
   },
+  watch: {
+    // 暴露一个carousel change事件
+    // carousel切换时触发
+    currentIdx (newV, oldV) {
+      this.$emit('change', newV, oldV)
+    }
+  },
   methods: {
     initPos (initIdx) {
       this.carouselItems = this._getCarouselItem()
