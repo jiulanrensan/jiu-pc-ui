@@ -42,21 +42,31 @@
         <div :class="[index === currentIdx ? 'curIndicator' : '']"></div>
       </li>
     </ul>
-    <ul 
-      :class="[
-        'j-c-nail'
-      ]"
-      :style="{height: thumbnailHeight}"
-      v-if="thumbnail">
-      <li 
-        v-for="(item,index) in carouselItems" 
-        @click="handleSelectItem(index)"
-        :key="index" 
-        :data-set="index"
-        :style="{height: thumbnailHeight, width: thumbnailHeight}">
-          <img :src="item.image" alt="">
-      </li>
-    </ul>
+    <div style="overflow: hidden">
+      <ul 
+        :class="[
+          'j-c-nail'
+        ]"
+        :style="{
+          height: thumbnailHeight, 
+          width: thumbnailHeight.slice(0,-2)*carouselItems.length+'px',
+          'margin-left': ''
+        }"
+        ref="jcnail"
+        v-if="thumbnail">
+        <li 
+          v-for="(item,index) in carouselItems" 
+          @click="handleSelectItem(index)"
+          :class="[
+            index === currentIdx ? 'nail-selected' : ''
+          ]"
+          :key="index" 
+          :data-set="index"
+          :style="{height: thumbnailHeight, width: thumbnailHeight}">
+            <img :src="item.image" alt="">
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -120,7 +130,8 @@ export default {
       carouselItems: [],
       carouselTimers: null,
       isHover: false,
-      boxWidth: 0
+      boxWidth: 0,
+      nailDom: []
     }
   },
   /**
@@ -134,6 +145,7 @@ export default {
   mounted () {
     // 初始化子元素位置
     this.initPos(this.initIdx)
+    // this.nailDom = this.$refs.jcnail
     // 父组件最后mounted，此处开启定时轮播
     if (this.autoPlay) this.startCarousel(this.interval)
     
@@ -149,6 +161,8 @@ export default {
     // carousel切换时触发
     currentIdx (newV, oldV) {
       this.lastIdx = oldV
+      // this.isNailItemShow()
+      
       this.$emit('change', newV, oldV)
     }
   },
@@ -191,6 +205,11 @@ export default {
       this._setItemIdx(step)
       this.setItemPos(this.currentIdx)
     },
+    isNailItemShow () {
+      console.log(this.nailDom);
+       
+    },
+    setNailItem () {},
     handleSelectItem (idx) {
       this.setItemPos(this.currentIdx = Number(idx))
     },
@@ -251,6 +270,7 @@ export default {
     width: 100%;
     height: 300px;
     position: relative;
+    // overflow: hidden;
     .j-c-btngroup{
       position: absolute;
       z-index: $--zIndex-10;
@@ -275,7 +295,7 @@ export default {
       position: relative;
       overflow: hidden;
     }
-    ul.j-c-indicator{
+    .j-c-indicator{
       width: 100%;
       height: 30px;
       @include flex-center(center);
@@ -308,13 +328,14 @@ export default {
         
       }
     }
-    ul.j-c-nail{
-      width: 100%;
-      overflow: hidden;
+    .j-c-nail{
+      // overflow: hidden;
+      transition: margin .4s ease-in-out;
       li{
         float: left;
         cursor: pointer;
         box-sizing: border-box;
+        border: 3px solid transparent;
         @include flex-center(flex-start);
         img{
           display: block;
@@ -323,7 +344,11 @@ export default {
           max-height: 100%;
           max-width: 100%;
         }
+        &.nail-selected{
+          border-color: #000;
+        }
       }
     }
+    
   }
 </style>

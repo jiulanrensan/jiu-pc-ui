@@ -1,13 +1,13 @@
 <template>
   <div>
-    <j-carousel :initIdx="initIdx">
+    <!-- <j-carousel :initIdx="initIdx">
       <j-carousel-item v-for="item in items" :key="item">
         <h2>{{item}}</h2>
       </j-carousel-item>
-    </j-carousel>
+    </j-carousel> -->
     <br>
     <br>
-    <j-carousel :initIdx="initIdx" :autoPlay="false" :arrow="false" :thumbnail="true">
+    <j-carousel :initIdx="initIdx" :autoPlay="false" :thumbnail="true">
       <j-carousel-item v-for="item in thumbnailList" :key="item.content" :image="item.imgUrl">
         <h2>{{item.content}}</h2>
       </j-carousel-item>
