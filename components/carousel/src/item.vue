@@ -26,13 +26,13 @@ export default {
     
   },
   watch: {
-    left (value) {
+    // left (value) {
       // bug: 2切换1时，4有动画效果，会看到4在移动
+      // const {currenIdx, lastIdx} = this.$parent
       // if ([-1, 0, 1].includes(value)) this.itemStyle = `transition: transform .3s;`
       // 宽度width需要响应式，所以应该取父元素的盒子宽度
-      this.itemStyle = `transform:translateX(${value*this.boxWidth}px);}`
-      
-    }
+      // this.itemStyle = `transform:translateX(${value*this.boxWidth}px);`
+    // }
   },
   methods: {
   }
@@ -40,10 +40,11 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../../style/common.scss";
   .j-carousel-item{
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: transform .3s;
+    // transition: transform .3s;
   }
 </style>

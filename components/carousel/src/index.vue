@@ -93,9 +93,11 @@ export default {
     return {
       // 当前展示索引
       currentIdx: 0,
+      lastIdx: 0,
       carouselItems: [],
       carouselTimers: null,
       isHover: false,
+      boxWidth: 0
     }
   },
   /**
@@ -122,12 +124,12 @@ export default {
     initPos (initIdx) {
       this.carouselItems = this._getCarouselItem()
       this._setItemWidth()
-      this._setItemPos(initIdx)
+      this.setItemPos(initIdx)
     },
     startCarousel (interval) {
       this.carouselTimers = setInterval(() => {
         this._setItemIdx(1)
-        this._setItemPos(this.currentIdx)
+        this.setItemPos(this.currentIdx)
       }, interval);
     },
     stopCarousel () {},
@@ -151,17 +153,18 @@ export default {
       let idx
       idx = target.tagName === 'LI' ? target.dataset.set : target.parentNode.dataset.set
       if (isNaN(idx)) return
-      this._setItemPos(this.currentIdx = Number(idx))
+      this.setItemPos(this.currentIdx = Number(idx))
     },
     handleArrow (step) {
       this._setItemIdx(step)
-      this._setItemPos(this.currentIdx)
+      this.setItemPos(this.currentIdx)
     },
     _getCarouselItem(){
       return this.$children.filter(el => el.$options.name === 'JCarouselItem')
     },
     _setItemIdx (step) {
       const final = this.carouselArr.length - 1
+      this.lastIdx = this.currentIdx
       this.currentIdx += step
       if (this.currentIdx > final) {
         this.currentIdx = 0
@@ -179,7 +182,7 @@ export default {
     /**
      * @param {number} showIdx 当前应展示的索引
      */
-    _setItemPos (showIdx) {
+    setItemPos (showIdx) {
       const length = this.carouselItems.length
       this.carouselItems.forEach((ele, idx) => {
         ele.left = idx - showIdx
@@ -188,13 +191,21 @@ export default {
         } else if (idx < showIdx - 1) {
           ele.left = (length - 1) - showIdx + idx + 1
         }
+        ele.itemStyle = this._setItemStyle(ele.left, idx)
       })
+    },
+    _setItemStyle (value, idx) {
+      let style = `${(idx === this.currentIdx || idx === this.lastIdx) ? 'transition: transform .3s ease-in-out;' : ''}`
+      style += `transform:translateX(${value*this.boxWidth}px);`
+      // fix: css3兼容
+      return style
     },
     _setItemWidth () {
       // resize时需触发，再加个防抖
-      this.carouselItems.forEach(ele => {
-        ele.boxWidth = this.$el.offsetWidth
-      })
+      // this.carouselItems.forEach(ele => {
+      //   ele.boxWidth = this.$el.offsetWidth
+      // })
+      this.boxWidth = this.$el.offsetWidth
     }
   }
 }
