@@ -15,6 +15,9 @@ export default {
       animationDuration: 0.3
     }
   },
+  props: {
+    image: String
+  },
   created () {
     // console.log(this.$parent);
     

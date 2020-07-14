@@ -8,8 +8,8 @@
     <br>
     <br>
     <j-carousel :initIdx="initIdx" :autoPlay="false" :arrow="false" :thumbnail="true">
-      <j-carousel-item v-for="item in items" :key="item">
-        <h2>{{item}}</h2>
+      <j-carousel-item v-for="item in thumbnailList" :key="item.content" :image="item.imgUrl">
+        <h2>{{item.content}}</h2>
       </j-carousel-item>
     </j-carousel>
   </div>
@@ -20,6 +20,12 @@ export default {
   data () {
     return {
       items: [1, 2, 3, 4],
+      thumbnailList: Array.from({length: 10}, (item, index) => {
+        return {
+          content: index,
+          imgUrl: 'http://erp2.kd1.pagoda.com.cn/sttrace/static/img/welcome.0421271.png'
+        }
+      }),
       initIdx: 3
     }
   }

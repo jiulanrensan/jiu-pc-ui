@@ -46,13 +46,15 @@
       :class="[
         'j-c-nail'
       ]"
+      :style="{height: thumbnailHeight}"
       v-if="thumbnail">
       <li 
-        v-for="(item,index) in carouselArr" 
+        v-for="(item,index) in carouselItems" 
+        @click="handleSelectItem(index)"
         :key="index" 
         :data-set="index"
         :style="{height: thumbnailHeight, width: thumbnailHeight}">
-        
+          <img :src="item.image" alt="">
       </li>
     </ul>
   </div>
@@ -146,6 +148,7 @@ export default {
     // 暴露一个carousel change事件
     // carousel切换时触发
     currentIdx (newV, oldV) {
+      this.lastIdx = oldV
       this.$emit('change', newV, oldV)
     }
   },
@@ -188,12 +191,14 @@ export default {
       this._setItemIdx(step)
       this.setItemPos(this.currentIdx)
     },
+    handleSelectItem (idx) {
+      this.setItemPos(this.currentIdx = Number(idx))
+    },
     _getCarouselItem(){
       return this.$children.filter(el => el.$options.name === 'JCarouselItem')
     },
     _setItemIdx (step) {
       const final = this.carouselArr.length - 1
-      this.lastIdx = this.currentIdx
       this.currentIdx += step
       if (this.currentIdx > final) {
         this.currentIdx = 0
@@ -243,6 +248,7 @@ export default {
 <style lang="scss">
   @import "../../style/common.scss";
   .j-carousel-container{
+    width: 100%;
     height: 300px;
     position: relative;
     .j-c-btngroup{
@@ -272,7 +278,7 @@ export default {
     ul.j-c-indicator{
       width: 100%;
       height: 30px;
-      @include flex-center;
+      @include flex-center(center);
       &.indicator-inside{
         position: absolute;
         bottom: 0;
@@ -283,7 +289,7 @@ export default {
         width: 30px;
         height: 10px;
         margin: 0 5px;
-        @include flex-center;
+        @include flex-center(center);
         cursor: pointer;
         div{
           width: 100%;
@@ -304,8 +310,20 @@ export default {
     }
     ul.j-c-nail{
       width: 100%;
-      height: 80px;
-      @include flex-center;
+      overflow: hidden;
+      li{
+        float: left;
+        cursor: pointer;
+        box-sizing: border-box;
+        @include flex-center(flex-start);
+        img{
+          display: block;
+          box-sizing: border-box;
+          padding: $--padding-1 $--padding-1;
+          max-height: 100%;
+          max-width: 100%;
+        }
+      }
     }
   }
 </style>

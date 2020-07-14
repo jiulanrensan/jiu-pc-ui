@@ -24,9 +24,9 @@ button{
  li{
   list-style-type: none;
 }
-@mixin flex-center {
+@mixin flex-center($type) {
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: $type;
   align-items: center;
 }
