@@ -24,10 +24,9 @@ button{
  li{
   list-style-type: none;
 }
-
 @mixin flex-center {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
 }

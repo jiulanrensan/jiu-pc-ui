@@ -272,10 +272,7 @@ export default {
     ul.j-c-indicator{
       width: 100%;
       height: 30px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       &.indicator-inside{
         position: absolute;
         bottom: 0;
@@ -286,9 +283,7 @@ export default {
         width: 30px;
         height: 10px;
         margin: 0 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center;
         cursor: pointer;
         div{
           width: 100%;
@@ -310,10 +305,7 @@ export default {
     ul.j-c-nail{
       width: 100%;
       height: 80px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
     }
   }
 </style>

@@ -109,9 +109,7 @@ export default {
   .j-back-to-top{
     position: fixed;
     box-shadow: 0 0 6px rgba(0,0,0, .12);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
     cursor: pointer;
   }
 </style>
