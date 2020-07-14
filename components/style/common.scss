@@ -24,3 +24,10 @@ button{
  li{
   list-style-type: none;
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}

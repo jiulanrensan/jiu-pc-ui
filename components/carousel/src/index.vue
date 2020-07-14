@@ -35,11 +35,24 @@
         'j-c-indicator',
         `indicator-${indicatorPos}`
       ]" 
-      v-if="indicator"
+      v-if="!thumbnail && indicator"
       @click="handleClickIndic"
       @mouseover="handleMouseOverIndic">
       <li v-for="(item,index) in carouselArr" :key="index" :data-set="index">
         <div :class="[index === currentIdx ? 'curIndicator' : '']"></div>
+      </li>
+    </ul>
+    <ul 
+      :class="[
+        'j-c-nail'
+      ]"
+      v-if="thumbnail">
+      <li 
+        v-for="(item,index) in carouselArr" 
+        :key="index" 
+        :data-set="index"
+        :style="{height: thumbnailHeight, width: thumbnailHeight}">
+        
       </li>
     </ul>
   </div>
@@ -66,6 +79,14 @@ export default {
     indicator: {
       type: Boolean,
       default: true
+    },
+    thumbnail:{
+      type: Boolean,
+      default: false
+    },
+    thumbnailHeight: {
+      type: String,
+      default: '80px'
     },
     indicatorPos: {
       type: String,
@@ -121,6 +142,7 @@ export default {
     }
   },
   watch: {
+    // feat: transitionend事件
     // 暴露一个carousel change事件
     // carousel切换时触发
     currentIdx (newV, oldV) {
@@ -284,6 +306,14 @@ export default {
         }
         
       }
+    }
+    ul.j-c-nail{
+      width: 100%;
+      height: 80px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 </style>
