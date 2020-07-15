@@ -30,3 +30,13 @@ button{
   justify-content: $type;
   align-items: center;
 }
+
+@mixin transition($type, $time, $speed: ease-in-out) {
+  transition: $type $time $speed;
+}
+
+@mixin absoluteBox ($pos) {
+  position: absolute;
+  width: 100%;
+  #{$pos}: 0;
+}

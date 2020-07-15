@@ -111,7 +111,7 @@ export default {
     },
     indicatorPos: {
       type: String,
-      // outside/indside/none
+      // outside/indside
       default: 'outside'
     },
     height: String,
@@ -329,13 +329,10 @@ export default {
     width: 100%;
     height: 300px;
     position: relative;
-    // overflow: hidden;
     .j-c-btngroup{
-      position: absolute;
       z-index: $--zIndex-10;
-      width: 100%;
-      top: 0;
-      transition: all .5s;
+      @include absoluteBox(top);
+      @include transition(all, $--transition-5);
       button{
         position: absolute;
         /* 20为 icon 高度 */
@@ -359,9 +356,7 @@ export default {
       height: 30px;
       @include flex-center(center);
       &.indicator-inside{
-        position: absolute;
-        bottom: 0;
-        width: 100%;
+        @include absoluteBox(bottom)
       }
       li{
         box-sizing: border-box;
@@ -374,7 +369,7 @@ export default {
           width: 100%;
           height: 3px;
           background-color: mix($--color-default, $--color-info, 50%);
-          transition: all .2s;
+          @include transition(all, $--transition-3);
           &.curIndicator{
             background-color: $--color-info;
           }
@@ -395,7 +390,7 @@ export default {
     }
     .j-c-nail-content{
       overflow: hidden;
-      transition: all .4s ease-in-out;
+      @include transition(all, $--transition-3);
       li{
         float: left;
         cursor: pointer;

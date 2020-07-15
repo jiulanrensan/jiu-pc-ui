@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <j-carousel :initIdx="initIdx">
+    <!-- <j-carousel :initIdx="initIdx" indicatorPos="inside">
       <j-carousel-item v-for="item in items" :key="item">
         <h2>{{item}}</h2>
       </j-carousel-item>
