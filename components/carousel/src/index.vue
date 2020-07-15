@@ -42,10 +42,17 @@
         <div :class="[index === currentIdx ? 'curIndicator' : '']"></div>
       </li>
     </ul>
-    <div style="overflow: hidden" ref="nailDiv">
+    <!-- 缩略图 -->
+    <div ref="nailDiv" class="j-c-nail">
+      <div class="j-c-nail-btn-left" :style="{height: thumbnailHeight}" @click="handleNail(-1)">
+        <j-icon icon="iconarrow-left"></j-icon>
+      </div>
+      <div class="j-c-nail-btn-right" :style="{height: thumbnailHeight}" @click="handleNail(1)">
+        <j-icon icon="iconarrow-right"></j-icon>
+      </div>
       <ul 
         :class="[
-          'j-c-nail'
+          'j-c-nail-content'
         ]"
         :style="{
             height: thumbnailHeight, 
@@ -66,12 +73,14 @@
             <img :src="item.image" alt="">
         </li>
       </ul>
+      
     </div>
   </div>
 </template>
 
 <script>
 import JButton from 'package/button'
+import JIcon from 'package/icon'
 export default {
   name: 'JCarousel',
   props: {
@@ -120,7 +129,8 @@ export default {
     }
   },
   components: {
-    'j-button': JButton
+    'j-button': JButton,
+    'j-icon': JIcon
   },
   data () {
     return {
@@ -132,6 +142,9 @@ export default {
       isHover: false,
       boxWidth: 0,
       nailDom: [],
+      // 缩略图左移距离
+      nailLeft: 0,
+      // nail样式
       jcnailLeft: ''
     }
   },
@@ -209,9 +222,22 @@ export default {
       this._setItemIdx(Number(idx))
       this.setItemPos(this.currentIdx)
     },
+    // 箭头按钮切换轮播图
     handleArrow (step) {
       this._setItemIdx(this.currentIdx + step)
       this.setItemPos(this.currentIdx)
+    },
+    // 箭头按钮移动缩略图位置
+    handleNail (step) {
+      if (!this.$refs.jcnail) return 
+      // 单个缩略图宽度
+      const itemWidth = this.thumbnailHeight.slice(0,-2)
+      const {offsetWidth} = this.nailDiv
+      const ul = this.$refs.jcnail
+      if (step>0 && this.nailLeft === 0) return
+      if (step<0 && Math.abs(this.nailLeft)*itemWidth + offsetWidth >= ul.offsetWidth) return
+      this.nailLeft += Number(step)
+      this.jcnailLeft = `translate(${this.nailLeft*itemWidth}px)`
     },
     setNailItem () {
       // 没有offsetRight属性
@@ -219,8 +245,6 @@ export default {
       const {offsetWidth} = this.nailDiv
       const {offsetLeft} = this.nailDom[this.currentIdx]
       let dis = offsetWidth - offsetLeft
-      let left = 0
-      
       // 单个缩略图宽度
       const itemWidth = this.thumbnailHeight.slice(0,-2)
       const isNailItemHide = ((dis < itemWidth) || (offsetLeft < 0))
@@ -231,9 +255,9 @@ export default {
       }
       // 否则移动
       if (offsetLeft < 0) {
-        left = 0
+        this.nailLeft = 0
       } else {
-        left = (() => {
+        this.nailLeft = (() => {
           let left = dis > 0 ? 
             (dis)/itemWidth :
             Math.abs(dis)/itemWidth + 1
@@ -300,6 +324,7 @@ export default {
 
 <style lang="scss">
   @import "../../style/common.scss";
+  $nail-btn-width: 20px;
   .j-carousel-container{
     width: 100%;
     height: 300px;
@@ -363,8 +388,14 @@ export default {
       }
     }
     .j-c-nail{
-      // overflow: hidden;
-      transition: margin .4s ease-in-out;
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+      padding: 0 $nail-btn-width;
+    }
+    .j-c-nail-content{
+      overflow: hidden;
+      transition: all .4s ease-in-out;
       li{
         float: left;
         cursor: pointer;
@@ -383,6 +414,20 @@ export default {
         }
       }
     }
-    
+    .j-c-nail-btn-left,
+    .j-c-nail-btn-right{
+      width: $nail-btn-width;
+      position: absolute;
+      background: $--color-info;
+      z-index: $--zIndex-5;
+      cursor: pointer;
+      @include flex-center(center)
+    }
+    .j-c-nail-btn-left{
+      left: 0;
+    }
+    .j-c-nail-btn-right{
+      right: 0;
+    }
   }
 </style>

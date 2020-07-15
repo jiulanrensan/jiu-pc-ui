@@ -42,7 +42,7 @@ export default {
     }
     .right{
       width: 90%;
-      overflow: hidden;
+      overflow-x: hidden;
     }
   }
 </style>
