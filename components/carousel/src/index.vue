@@ -264,7 +264,7 @@ export default {
           return Math.ceil(left)*(-1)*itemWidth
         })()
       }
-      this.jcnailLeft = `translate(${left}px)`
+      this.jcnailLeft = `translate(${this.nailLeft}px)`
     },
     handleSelectItem (idx) {
       this._setItemIdx(Number(idx))
