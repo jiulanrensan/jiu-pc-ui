@@ -48,10 +48,10 @@
           'j-c-nail'
         ]"
         :style="{
-          height: thumbnailHeight, 
-          width: thumbnailHeight.slice(0,-2)*carouselItems.length+'px',
-          'margin-left': jcnailMarginLeft
-        }"
+            height: thumbnailHeight, 
+            width: thumbnailHeight.slice(0,-2)*carouselItems.length+'px',
+            transform: jcnailLeft
+          }"
         ref="jcnail"
         v-if="thumbnail">
         <li 
@@ -132,7 +132,7 @@ export default {
       isHover: false,
       boxWidth: 0,
       nailDom: [],
-      jcnailMarginLeft: ''
+      jcnailLeft: ''
     }
   },
   /**
@@ -169,7 +169,7 @@ export default {
     // carousel切换时触发
     currentIdx (newV, oldV) {
       this.lastIdx = oldV
-      // this.nailDom.length && this.setNailItem()
+      this.nailDom.length && this.setNailItem()
       this.$emit('change', newV, oldV)
     }
   },
@@ -219,28 +219,28 @@ export default {
       const {offsetWidth} = this.nailDiv
       const {offsetLeft} = this.nailDom[this.currentIdx]
       let dis = offsetWidth - offsetLeft
-      console.log(dis, offsetWidth, offsetLeft);
+      let left = 0
       
       // 单个缩略图宽度
       const itemWidth = this.thumbnailHeight.slice(0,-2)
       const isNailItemHide = ((dis < itemWidth) || (offsetLeft < 0))
       // 在可视区内，return
-      if (!isNailItemHide) return
+      if (!isNailItemHide) {
+        this.jcnailLeft = ''
+        return
+      }
       // 否则移动
       if (offsetLeft < 0) {
-        this.jcnailMarginLeft = '0'
+        left = 0
       } else {
-        console.log(dis);
-        if (dis > 0) {
-          this.jcnailMarginLeft = (-1)*Math.ceil((dis)/itemWidth)*itemWidth + 'px'
-        } else {
-          this.jcnailMarginLeft = (-1)*Math.ceil(Math.abs(dis)/itemWidth)*itemWidth + 'px'
-        }
-        // dis = dis < 0 ? Math.abs(dis) : dis
-        // console.log(Math.ceil((dis)/itemWidth)*itemWidth)
-        // this.jcnailMarginLeft = (-1)*Math.ceil((dis)/itemWidth)*itemWidth + 'px'
+        left = (() => {
+          let left = dis > 0 ? 
+            (dis)/itemWidth :
+            Math.abs(dis)/itemWidth + 1
+          return Math.ceil(left)*(-1)*itemWidth
+        })()
       }
-
+      this.jcnailLeft = `translate(${left}px)`
     },
     handleSelectItem (idx) {
       this._setItemIdx(Number(idx))

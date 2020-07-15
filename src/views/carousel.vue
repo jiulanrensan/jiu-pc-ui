@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       items: [1, 2, 3, 4],
-      thumbnailList: Array.from({length: 15}, (item, index) => {
+      thumbnailList: Array.from({length: 20}, (item, index) => {
         return {
           content: index,
           imgUrl: 'http://erp2.kd1.pagoda.com.cn/sttrace/static/img/welcome.0421271.png'
