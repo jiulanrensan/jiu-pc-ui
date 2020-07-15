@@ -405,7 +405,7 @@ export default {
           max-width: 100%;
         }
         &.nail-selected{
-          border-color: #000;
+          border-color: $--border-color-black;
         }
       }
     }
