@@ -1,5 +1,6 @@
 <template>
   <section>
+    <!-- 150+930=1080 -->
     <ul class="left">
       <router-link :to="item.path" v-for="item in routeList" :key="item.name" tag="li">{{item.name}}</router-link>
     </ul>
@@ -31,7 +32,6 @@ export default {
     .left{
       width: 10%;
       min-width: 150px;
-      overflow: auto;
       padding-top: 100px;
       box-shadow: 2px 0 2px rgba($color: #000000, $alpha: .1);
       li{
@@ -42,6 +42,7 @@ export default {
     }
     .right{
       width: 90%;
+      overflow: hidden;
     }
   }
 </style>
