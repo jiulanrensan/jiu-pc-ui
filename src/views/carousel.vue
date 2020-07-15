@@ -26,7 +26,7 @@ export default {
           imgUrl: 'http://erp2.kd1.pagoda.com.cn/sttrace/static/img/welcome.0421271.png'
         }
       }),
-      initIdx: 3
+      initIdx: 7
     }
   }
 }

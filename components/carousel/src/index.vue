@@ -42,7 +42,7 @@
         <div :class="[index === currentIdx ? 'curIndicator' : '']"></div>
       </li>
     </ul>
-    <div style="overflow: hidden">
+    <div style="overflow: hidden" ref="nailDiv">
       <ul 
         :class="[
           'j-c-nail'
@@ -50,7 +50,7 @@
         :style="{
           height: thumbnailHeight, 
           width: thumbnailHeight.slice(0,-2)*carouselItems.length+'px',
-          'margin-left': ''
+          'margin-left': jcnailMarginLeft
         }"
         ref="jcnail"
         v-if="thumbnail">
@@ -131,7 +131,8 @@ export default {
       carouselTimers: null,
       isHover: false,
       boxWidth: 0,
-      nailDom: []
+      nailDom: [],
+      jcnailMarginLeft: ''
     }
   },
   /**
@@ -145,7 +146,11 @@ export default {
   mounted () {
     // 初始化子元素位置
     this.initPos(this.initIdx)
-    // this.nailDom = this.$refs.jcnail
+    if (this.$refs.jcnail) {
+      this.$nextTick(() => {
+        this.nailDom = this.$refs.jcnail.getElementsByTagName('li')
+      })
+    }
     // 父组件最后mounted，此处开启定时轮播
     if (this.autoPlay) this.startCarousel(this.interval)
     
@@ -153,6 +158,9 @@ export default {
   computed:{
     carouselArr () {
       return this.$slots.default
+    },
+    nailDiv () {
+      return this.$refs.nailDiv
     }
   },
   watch: {
@@ -161,8 +169,7 @@ export default {
     // carousel切换时触发
     currentIdx (newV, oldV) {
       this.lastIdx = oldV
-      // this.isNailItemShow()
-      
+      // this.nailDom.length && this.setNailItem()
       this.$emit('change', newV, oldV)
     }
   },
@@ -174,7 +181,7 @@ export default {
     },
     startCarousel (interval) {
       this.carouselTimers = setInterval(() => {
-        this._setItemIdx(1)
+        this._setItemIdx(this.currentIdx + 1)
         this.setItemPos(this.currentIdx)
       }, interval);
     },
@@ -199,26 +206,53 @@ export default {
       let idx
       idx = target.tagName === 'LI' ? target.dataset.set : target.parentNode.dataset.set
       if (isNaN(idx)) return
-      this.setItemPos(this.currentIdx = Number(idx))
-    },
-    handleArrow (step) {
-      this._setItemIdx(step)
+      this._setItemIdx(Number(idx))
       this.setItemPos(this.currentIdx)
     },
-    isNailItemShow () {
-      console.log(this.nailDom);
-       
+    handleArrow (step) {
+      this._setItemIdx(this.currentIdx + step)
+      this.setItemPos(this.currentIdx)
     },
-    setNailItem () {},
+    setNailItem () {
+      // 没有offsetRight属性
+      // offsetLeft大于nailDiv或者小于0则要移动nailDom
+      const {offsetWidth} = this.nailDiv
+      const {offsetLeft} = this.nailDom[this.currentIdx]
+      let dis = offsetWidth - offsetLeft
+      console.log(dis, offsetWidth, offsetLeft);
+      
+      // 单个缩略图宽度
+      const itemWidth = this.thumbnailHeight.slice(0,-2)
+      const isNailItemHide = ((dis < itemWidth) || (offsetLeft < 0))
+      // 在可视区内，return
+      if (!isNailItemHide) return
+      // 否则移动
+      if (offsetLeft < 0) {
+        this.jcnailMarginLeft = '0'
+      } else {
+        console.log(dis);
+        if (dis > 0) {
+          this.jcnailMarginLeft = (-1)*Math.ceil((dis)/itemWidth)*itemWidth + 'px'
+        } else {
+          this.jcnailMarginLeft = (-1)*Math.ceil(Math.abs(dis)/itemWidth)*itemWidth + 'px'
+        }
+        // dis = dis < 0 ? Math.abs(dis) : dis
+        // console.log(Math.ceil((dis)/itemWidth)*itemWidth)
+        // this.jcnailMarginLeft = (-1)*Math.ceil((dis)/itemWidth)*itemWidth + 'px'
+      }
+
+    },
     handleSelectItem (idx) {
-      this.setItemPos(this.currentIdx = Number(idx))
+      this._setItemIdx(Number(idx))
+      this.setItemPos(this.currentIdx)
     },
     _getCarouselItem(){
       return this.$children.filter(el => el.$options.name === 'JCarouselItem')
     },
-    _setItemIdx (step) {
+    _setItemIdx (newIdx) {
       const final = this.carouselArr.length - 1
-      this.currentIdx += step
+      this.lastIdx = this.currentIdx
+      this.currentIdx = newIdx
       if (this.currentIdx > final) {
         this.currentIdx = 0
       } else if (this.currentIdx < 0){
