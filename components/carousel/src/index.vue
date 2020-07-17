@@ -354,7 +354,7 @@ export default {
     .j-c-indicator{
       width: 100%;
       height: 30px;
-      @include flex-center(center);
+      @include flexCenter(center);
       &.indicator-inside{
         @include absoluteBox(bottom)
       }
@@ -363,7 +363,7 @@ export default {
         width: 30px;
         height: 10px;
         margin: 0 5px;
-        @include flex-center(center);
+        @include flexCenter(center);
         cursor: pointer;
         div{
           width: 100%;
@@ -396,7 +396,7 @@ export default {
         cursor: pointer;
         box-sizing: border-box;
         border: 3px solid transparent;
-        @include flex-center(flex-start);
+        @include flexCenter(flex-start);
         img{
           display: block;
           box-sizing: border-box;
@@ -416,7 +416,7 @@ export default {
       background: $--color-info;
       z-index: $--zIndex-5;
       cursor: pointer;
-      @include flex-center(center)
+      @include flexCenter(center)
     }
     .j-c-nail-btn-left{
       left: 0;

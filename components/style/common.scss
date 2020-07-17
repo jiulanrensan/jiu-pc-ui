@@ -25,11 +25,24 @@ button{
  li{
   list-style-type: none;
 }
-@mixin flex-center($type) {
+// flex布局垂直居中, 水平居中/两端对齐/每个项目两侧的间隔相等
+@mixin flexCenter($type) {
   box-sizing: border-box;
   display: flex;
   justify-content: $type;
   align-items: center;
+}
+// 绝对定位垂直居中
+@mixin absVerCenter{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+// 绝对定位水平居中
+@mixin absHorCenter{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @mixin transition($type, $time, $speed: ease-in-out) {

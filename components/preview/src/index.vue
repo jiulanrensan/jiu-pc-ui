@@ -5,12 +5,32 @@
       <div class="j-pre-close" @click="preview(false)">
         <j-icon icon="iconguanbi" color="#000"></j-icon>
       </div>
+      <div class="j-pre-btn j-pre-btn-left">
+        <j-button
+          circle>
+          <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        </j-button>
+      </div>
+      <div class="j-pre-btn j-pre-btn-right">
+        <j-button 
+          circle>
+          <J-icon icon="iconarrow-right" color="#000"></J-icon>
+        </j-button>
+      </div>
+      <div class="j-pre-tool">
+        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+      </div>
+      <div class="j-pre-imgbox"></div>
     </div>
   </transition>
 </template>
 
 <script>
 import JIcon from 'package/icon'
+import JButton from 'package/button'
 import {event} from 'package/utils/event/event.js'
 import {eventsName} from 'package/utils/event/const.js'
 export default {
@@ -21,6 +41,7 @@ export default {
     }
   },
   components: {
+    'j-button': JButton,
     'j-icon': JIcon
   },
   mounted () {
@@ -52,5 +73,24 @@ export default {
     top: 40px;
     right: 40px;
     cursor: pointer;
+  }
+  .j-pre-btn{
+    @include absVerCenter();
+    &.j-pre-btn-left{
+      left: 40px;
+    }
+    &.j-pre-btn-right{
+      right: 40px;
+    }
+  }
+  .j-pre-tool{
+    @include absHorCenter();
+    @include flexCenter(center);
+    height: 40px;
+    bottom: 50px;
+    border-radius: 20px;
+    span{
+      padding: 10px;
+    }
   }
 </style>
