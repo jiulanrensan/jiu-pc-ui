@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <p>use back-to-top</p>
-    <j-back-top></j-back-top>
-    <j-back-top bottom="200">
+    <j-back-top scrNode=".right"></j-back-top>
+    <j-back-top scrNode=".right" bottom="200">
       <div>
         <p>To Top</p>
       </div>

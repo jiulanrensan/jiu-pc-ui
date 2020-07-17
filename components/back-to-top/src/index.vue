@@ -42,7 +42,9 @@ export default {
     showHeight: {
       type: Number | String,
       default: 400
-    }
+    },
+    // 自定义的滚动节点
+    scrNode: String
   },
   data () {
     return {
@@ -54,13 +56,21 @@ export default {
     'j-icon': JIcon
   },
   mounted () {
-    this.scrollElement = document.documentElement
-    this.handleVisible = throttle(this.handleVisible, 100)
+    this.initNode()
+    // this.handleVisible = throttle(this.handleVisible, 100)
     this.handleListenScroll()
   },
   methods: {
+    initNode () {
+      this.scrollElement = (() => {
+        const node = !this.scrNode ? document.documentElement : document.querySelector(this.scrNode)
+        // 还需要对查找的node节点进行判断，保证代码健壮性
+        if (!node) throw Error(`can't find this node: ${this.scrNode}`)
+        return node
+      })()
+    },
     handleListenScroll () {
-      document.addEventListener('scroll', this.handleVisible)
+      this.scrollElement.addEventListener('scroll', this.handleVisible)
     },
     handleVisible () {
       this.showBackTop = this.showHeight < this.scrollElement.scrollTop
