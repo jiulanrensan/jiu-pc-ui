@@ -1,6 +1,6 @@
 <template>
   <div class="j-preview" v-show="showPreview">
-
+    <div class="j-pre-mask"></div>
   </div>
 </template>
 
@@ -38,6 +38,13 @@ export default {
 }
 </script>
 
-<style>
-  /* @import "../../style/common.scss"; */
+<style lang="scss">
+  @import "../../style/common.scss";
+  .j-preview{
+    @include fullScreen(fixed,$--zIndex-100);
+  }
+  .j-pre-mask{
+    @include fullMask();
+    
+  }
 </style>

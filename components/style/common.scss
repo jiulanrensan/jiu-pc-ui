@@ -40,3 +40,19 @@ button{
   width: 100%;
   #{$pos}: 0;
 }
+
+@mixin fullScreen ($pos,$zIndex: 1) {
+  position: $pos;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $zIndex;
+}
+
+// 遮罩层
+@mixin fullMask ($opacity: 0.5) {
+  @include fullScreen(absolute);
+  opacity: $opacity;
+  background-color: $--color-black;
+}

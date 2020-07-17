@@ -11,14 +11,6 @@ $--color-warning: #E6A23C !default;
 $--color-danger: #F56C6C !default;
 $--color-info: #909399 !default;
 
-
-// scss mix函数
-$--color-primary-light: mix($--color-default, $--color-primary, 80%) !default;
-$--color-success-light: mix($--color-default, $--color-success, 80%) !default;
-$--color-warning-light: mix($--color-default, $--color-warning, 80%) !default;
-$--color-danger-light: mix($--color-default, $--color-danger, 80%) !default;
-$--color-info-light: mix($--color-default, $--color-info, 80%) !default;
-
 // text color
 $--color-text-default: $--color-black !default;
 $--color-text-white: $--color-default !default;
@@ -70,3 +62,19 @@ $--transition-2: 0.2s !default;
 $--transition-3: 0.3s !default;
 $--transition-4: 0.4s !default;
 $--transition-5: 0.5s !default;
+
+// 透明度
+$--opacity-1: 10% !default;
+$--opacity-5: 50% !default;
+$--opacity-8: 80% !default;
+$--opacity-9: 90% !default;
+
+
+// scss mix函数
+$--color-primary-light: mix($--color-default, $--color-primary, $--opacity-8) !default;
+$--color-success-light: mix($--color-default, $--color-success, $--opacity-8) !default;
+$--color-warning-light: mix($--color-default, $--color-warning, $--opacity-8) !default;
+$--color-danger-light: mix($--color-default, $--color-danger, $--opacity-8) !default;
+$--color-info-light: mix($--color-default, $--color-info, $--opacity-8) !default;
+
+
