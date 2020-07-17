@@ -25,6 +25,11 @@ export default new Router({
           path: 'carousel',
           name: 'Carousel',
           component: () => import('@/views/carousel.vue')
+        },
+        {
+          path: 'preview',
+          name: 'Preview',
+          component: () => import('@/views/preview.vue')
         }
       ]
     }

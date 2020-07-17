@@ -10,6 +10,7 @@ import JIcon from 'package/icon'
 import JBackTop from 'package/back-to-top'
 import JCarousel from 'package/carousel'
 import JCarouselItem from 'package/carousel-item'
+import 'package/preview'
 Vue.use(JButton)
 Vue.use(JButtonGroup)
 Vue.use(JIcon)

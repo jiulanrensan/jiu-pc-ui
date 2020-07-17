@@ -18,7 +18,8 @@ export default {
       routeList: [
         {name: 'Button', path: '/button'},
         {name: 'BackTop', path: '/backtop'},
-        {name: 'Carousel', path: '/carousel'}
+        {name: 'Carousel', path: '/carousel'},
+        {name: 'Preview', path: '/preview'}
       ]
     }
   }
