@@ -1,4 +1,5 @@
 @import './var.scss';
+@import './transition.scss';
 
 html, body, ul, li, h1, h2, h3, h4, h5{
   margin: 0;
@@ -52,7 +53,7 @@ button{
 
 // 遮罩层
 @mixin fullMask ($opacity: 0.5) {
-  @include fullScreen(absolute);
+  @include fullScreen(absolute, 0);
   opacity: $opacity;
   background-color: $--color-black;
 }
