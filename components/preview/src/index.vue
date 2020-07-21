@@ -8,20 +8,20 @@
       <div class="j-pre-btn j-pre-btn-left">
         <j-button
           circle>
-          <J-icon icon="iconarrow-left" color="#000"></J-icon>
+          <j-icon icon="iconarrow-left" color="#000"></j-icon>
         </j-button>
       </div>
       <div class="j-pre-btn j-pre-btn-right">
         <j-button 
           circle>
-          <J-icon icon="iconarrow-right" color="#000"></J-icon>
+          <j-icon icon="iconarrow-right" color="#000"></j-icon>
         </j-button>
       </div>
       <div class="j-pre-tool">
-        <J-icon icon="iconarrow-left" color="#000"></J-icon>
-        <J-icon icon="iconarrow-left" color="#000"></J-icon>
-        <J-icon icon="iconarrow-left" color="#000"></J-icon>
-        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        <j-icon icon="iconarrow-left" color="#000"></j-icon>
+        <j-icon icon="iconarrow-left" color="#000"></j-icon>
+        <j-icon icon="iconarrow-left" color="#000"></j-icon>
+        <j-icon icon="iconarrow-left" color="#000"></j-icon>
       </div>
       <div class="j-pre-imgbox"></div>
     </div>

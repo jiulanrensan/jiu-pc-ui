@@ -10,7 +10,7 @@
     <!-- 用插槽插入自定义内容，不插入时显示默认内容 -->
     <slot>
       <div style="border-radius: 50%">
-        <J-icon icon="iconarrow-up" color="#000"></J-icon>
+        <j-icon icon="iconarrow-up" color="#000"></j-icon>
       </div>
     </slot>
   </div>

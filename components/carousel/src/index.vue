@@ -17,12 +17,12 @@
       <j-button
         circle
         @click="handleArrow(-1)">
-        <J-icon icon="iconarrow-left" color="#000"></J-icon>
+        <j-icon icon="iconarrow-left" color="#000"></j-icon>
       </j-button>
       <j-button 
         circle
         @click="handleArrow(1)">
-        <J-icon icon="iconarrow-right" color="#000"></J-icon>
+        <j-icon icon="iconarrow-right" color="#000"></j-icon>
       </j-button>
     </div>
     <!-- 插槽，存放子元素 -->
